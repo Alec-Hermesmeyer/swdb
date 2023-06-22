@@ -1,10 +1,18 @@
 import Sidebar from '@/components/Sidebar'
 import '@/styles/globals.css'
+import { useState } from 'react'
+import { createPagesBrowserClient } from '@supabase/auth-helpers-nextjs'
+import { SessionContextProvider } from '@supabase/auth-helpers-react'
 
 export default function App({ Component, pageProps }) {
+  const [supabaseClient] = useState(() => createPagesBrowserClient());
   return (
-    <Sidebar>
+    <SessionContextProvider
+    supabaseClient={supabaseClient}
+    initialSession={pageProps.initialSession}>
+      <Sidebar>
       <Component {...pageProps} />
     </Sidebar>
+    </SessionContextProvider>
   )
 }

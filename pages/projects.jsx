@@ -2,8 +2,10 @@ import React from 'react'
 import { pmList } from '@/data/pmList'
 import { RxPerson } from 'react-icons/rx'
 import ProjectManagerList from '@/components/ProjectManagerList'
+import useAuth from '@/utils/auth'
 
 const projects = () => {
+    useAuth();
     return (
         <div className='bg-gray-100 min-h-screen'>
             <div className='flex justify-between px-4 pt-4 pb-4 bg-blue-800 text-white'>
