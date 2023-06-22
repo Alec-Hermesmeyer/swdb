@@ -16,8 +16,11 @@ const ProtectedOrdersPage = withAuth(orders)
 const ProtectedProjectsPage = withAuth(projects)
 const ProtectedCustomersPage = withAuth(customers)
 
+const supabaseUrl = 'https://qhiwobrqftpbwsxjvhdl.supabase.co'
+const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFoaXdvYnJxZnRwYndzeGp2aGRsIiwicm9sZSI6ImFub24iLCJpYXQiOjE2ODAxMDYxNDksImV4cCI6MTk5NTY4MjE0OX0.sz1TxezhnyIPIqCvOpAq2G5ZiiDwFQkWZlRxKnvLLLk'
+
 export default function Home() {
-  const supabase = createClientComponentClient()
+  const supabase = createClientComponentClient(supabaseKey, supabaseUrl)
   const session = useSession();
 
 
