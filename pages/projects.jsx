@@ -1,7 +1,7 @@
 import React from 'react'
 import { pmList } from '@/data/pmList'
 import { RxPerson } from 'react-icons/rx'
-import ProjectManagerList from '@/components/ProjectManagerList'
+import ProjectManagerList from '@/components/PMList/ProjectManagerList';
 import useAuth from '@/utils/auth'
 
 const projects = () => {

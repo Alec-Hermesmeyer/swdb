@@ -54,14 +54,15 @@ const Sidebar = ({ children }) => {
               >
                 <FiLogIn size={20} />
               </button>
-            </>
-          )}
-
-          <Link href='/'>
+              <Link href='/'>
             <div className='bg-gray-200 hover:bg-blue-800 hover:text-white text-black p-3 rounded-lg inline-block cursor-pointer my-4'>
               <FiSettings size={20} />
             </div>
           </Link>
+            </>
+          )}
+
+          
         </div>
       </div>
       <main className='ml-20 w-full'>{children}</main>

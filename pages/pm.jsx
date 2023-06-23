@@ -1,6 +1,7 @@
-import ProjectManagerList from '@/components/ProjectManagerList'
+import ProjectManagerList from '@/components/PMList/ProjectManagerList';
 import React, { useState } from 'react';
 import useAuth from '@/utils/auth';
+import SeanList from '@/components/PMList/SeanList';
 
 const pm = () => {
   useAuth();
@@ -50,13 +51,17 @@ const pm = () => {
         )}
       </div>
       {isExpanded && (
-        <div className="px-4 py-2">
+        <div className="grid grid-cols-2 gap-4 px-4 py-2">
+        <div className="col-span-1 lg:h-[70vh] h-[50vh]">
           <ProjectManagerList />
         </div>
-      )}
-    </div>
-  );
+        <div className="col-span-1 lg:h-[70vh] h-[50vh]">
+          <SeanList />
+        </div>
+      </div>
+    )}
+  </div>
+);
 };
 
-
-export default pm
+export default pm;

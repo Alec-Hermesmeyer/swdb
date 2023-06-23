@@ -4,16 +4,17 @@ import { BiDetail } from 'react-icons/bi';
 import { createClient } from '@supabase/supabase-js';
 
 // Initialize Supabase client
-const supabaseUrl = 'https://qhiwobrqftpbwsxjvhdl.supabase.co'
-const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFoaXdvYnJxZnRwYndzeGp2aGRsIiwicm9sZSI6ImFub24iLCJpYXQiOjE2ODAxMDYxNDksImV4cCI6MTk5NTY4MjE0OX0.sz1TxezhnyIPIqCvOpAq2G5ZiiDwFQkWZlRxKnvLLLk'
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+
 
 const supabase = createClient(supabaseUrl, supabaseKey);
 
 const ProjectManagerList = () => {
   const [jobName, setJobName] = useState('');
   const [pm, setPM] = useState('');
-  const [pmList, setPMList] = useState([]);
-
+  const [masterList, setMasterList] = useState([]);
+  
 
   const addJob = async () => {
     try {
@@ -25,7 +26,7 @@ const ProjectManagerList = () => {
         throw error;
       }
 
-      setPMList([...pmList, data[0]]);
+      setMasterList([...masterList, data[0]]);
       setJobName('');
       setPM('');
     } catch (error) {
@@ -45,25 +46,23 @@ const ProjectManagerList = () => {
         }
 
         console.log('Retrieved data:', data);
-        setPMList(data);
+        setMasterList(data);
       } catch (error) {
         console.error('Error fetching jobs:', error.message);
       }
     };
 
-
     fetchJobs();
   }, []);
 
-  console.log('pmList:', pmList); // Verify the pmList state
-
+  
 
   return (
     <div className='w-full col-span-1 relative h-full m-auto p-4 rounded-lg bg-white overflow-scroll'>
       <h1 className='text-2xl font-bold'>Project Manager List</h1>
       <div className='pb-40 h-full w-full'>
         <ul>
-          {pmList.map((order) => (
+          {masterList.map((order) => (
             <li
               key={order.id}
               className='bg-gray-50 hover:bg-gray-100 rounded-lg my-3 p-2 flex items-center cursor-pointer'
@@ -80,8 +79,20 @@ const ProjectManagerList = () => {
         </ul>
 
       </div>
-      
-        {/* <div className='flex items-center justify-between mt-4 w-45vw'>
+
+        
+
+   </div>
+  
+  );
+};
+
+      export default ProjectManagerList;
+
+
+
+
+      {/* <div className='flex items-center justify-between mt-4 w-45vw'>
           <input
             type='text'
             value={jobName}
@@ -103,10 +114,3 @@ const ProjectManagerList = () => {
             Add Job
           </button>
         </div> */}
-      
-
-    </div>
-  );
-};
-
-export default ProjectManagerList;
